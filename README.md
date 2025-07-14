@@ -36,11 +36,11 @@ A web-based application for managing karaoke machine rentals, supporting both us
 
 ### 3. Default Admin/User Credentials (for testing)
 - **Admin:**
-  - Email: `admin@example.com`
-  - Password: `admin123`
+  - Email: `admin@demo.com`
+  - Password: `1234`
 - **User:**
-  - Email: `juan@example.com`
-  - Password: `password`
+  - Email: `Junalvior21@gmail.com`
+  - Password: `1234`
 
 ## Usage
 - **Users** can register, log in, book units, pay, and view their history.
