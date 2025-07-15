@@ -49,17 +49,48 @@ include '../includes/header.php';
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card theme-navbar p-4">
-                <h2 class="mb-4 theme-title text-center">Simulated GCash Payment</h2>
+                <h2 class="mb-4 theme-title text-center"><i class="bi bi-wallet2"></i> Simulated GCash Payment</h2>
                 <p class="theme-text">Booking ID: <?php echo $booking['id']; ?><br>
                 Total: <b>₱<?php echo number_format($booking['total_price'],2); ?></b></p>
-                <form method="post">
-                    <button type="submit" class="btn theme-btn w-100">Pay Now</button>
+                <form method="post" id="payForm">
+                    <button type="button" class="btn theme-btn w-100 d-flex align-items-center justify-content-center gap-2" id="payNowBtn" aria-label="Pay Now"><i class="bi bi-cash-coin"></i> Pay Now</button>
                 </form>
                 <div class="mt-3 text-center">
-                    <a href="history.php" class="theme-text">Back to History</a>
+                    <a href="history.php" class="theme-text d-flex align-items-center justify-content-center gap-1"><i class="bi bi-arrow-left"></i> Back to History</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- Payment Confirmation Modal -->
+<div class="modal fade" id="payConfirmModal" tabindex="-1" aria-labelledby="payConfirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content theme-navbar">
+            <div class="modal-header">
+                <h5 class="modal-title theme-title" id="payConfirmModalLabel"><i class="bi bi-shield-check"></i> Confirm Payment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="theme-text">Are you sure you want to pay for this booking?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="payForm" class="btn btn-success d-flex align-items-center gap-2" id="confirmPayBtn"><span id="paySpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span> Yes, Pay Now</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+const payNowBtn = document.getElementById('payNowBtn');
+const payConfirmModal = new bootstrap.Modal(document.getElementById('payConfirmModal'));
+const payForm = document.getElementById('payForm');
+const paySpinner = document.getElementById('paySpinner');
+payNowBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    payConfirmModal.show();
+});
+payForm.addEventListener('submit', function() {
+    paySpinner.classList.remove('d-none');
+});
+</script>
 <?php include '../includes/footer.php'; ?> 

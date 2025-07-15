@@ -26,9 +26,10 @@ $page_title = 'Admin Dashboard';
 $base_path = '../';
 $is_admin = true;
 $show_logout = true;
+$user_name = $_SESSION['name'];
 $nav_links = [
-    ['url' => 'dashboard.php', 'text' => 'Dashboard'],
-    ['url' => 'manage_units.php', 'text' => 'Manage Units']
+    ['url' => 'dashboard.php', 'text' => 'Dashboard', 'active' => basename(__FILE__) === 'dashboard.php'],
+    ['url' => 'manage_units.php', 'text' => 'Manage Units', 'active' => basename(__FILE__) === 'manage_units.php']
 ];
 include '../includes/header.php';
 ?>
@@ -104,6 +105,8 @@ include '../includes/header.php';
                             <?php if ($row['status'] === 'pending'): ?>
                                 <a href="dashboard.php?action=confirm&id=<?php echo $row['id']; ?>" class="btn btn-sm btn-success">Confirm</a>
                                 <a href="dashboard.php?action=cancel&id=<?php echo $row['id']; ?>" class="btn btn-sm btn-danger">Cancel</a>
+                            <?php elseif ($row['status'] === 'confirmed' && !$row['units_returned']): ?>
+                                <a href="dashboard.php?action=return&id=<?php echo $row['id']; ?>" class="btn btn-sm btn-primary">Returned</a>
                             <?php else: ?>
                                 -
                             <?php endif; ?>
@@ -120,9 +123,25 @@ include '../includes/header.php';
 if (isset($_GET['action'], $_GET['id'])) {
     $id = (int)$_GET['id'];
     if ($_GET['action'] === 'confirm') {
-        $conn->query("UPDATE bookings SET status='confirmed' WHERE id=$id");
+        // Get units_requested for this booking
+        $booking = $conn->query("SELECT units_requested, status FROM bookings WHERE id=$id")->fetch_assoc();
+        if ($booking && $booking['status'] !== 'confirmed') {
+            $units_requested = (int)$booking['units_requested'];
+            // Decrease total_units
+            $conn->query("UPDATE settings SET total_units = total_units - $units_requested WHERE id=1");
+            // Confirm the booking
+            $conn->query("UPDATE bookings SET status='confirmed' WHERE id=$id");
+        }
     } elseif ($_GET['action'] === 'cancel') {
         $conn->query("UPDATE bookings SET status='cancelled' WHERE id=$id");
+    } elseif ($_GET['action'] === 'return') {
+        // Mark as returned and increase total_units
+        $booking = $conn->query("SELECT units_requested, units_returned, status FROM bookings WHERE id=$id")->fetch_assoc();
+        if ($booking && $booking['status'] === 'confirmed' && !$booking['units_returned']) {
+            $units_requested = (int)$booking['units_requested'];
+            $conn->query("UPDATE settings SET total_units = total_units + $units_requested WHERE id=1");
+            $conn->query("UPDATE bookings SET units_returned=1 WHERE id=$id");
+        }
     }
     echo '<script>window.location="dashboard.php";</script>';
     exit();

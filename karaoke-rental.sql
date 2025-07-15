@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS bookings (
     total_price DECIMAL(10, 2) NOT NULL,
     payment_status ENUM('unpaid', 'paid') DEFAULT 'unpaid',
     status ENUM('pending', 'confirmed', 'cancelled') DEFAULT 'pending',
+    units_returned BOOLEAN DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );

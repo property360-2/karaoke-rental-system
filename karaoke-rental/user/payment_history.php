@@ -11,11 +11,13 @@ $paid_bookings = $conn->query("SELECT * FROM bookings WHERE user_id = $user_id A
 
 $page_title = 'Payment History';
 $base_path = '../';
+$show_logout = true;
+$current_page = basename(__FILE__);
 $nav_links = [
-    ['url' => 'dashboard.php', 'text' => 'Dashboard'],
-    ['url' => 'rent.php', 'text' => 'Book Rental'],
-    ['url' => 'history.php', 'text' => 'Booking History'],
-    ['url' => 'payment_history.php', 'text' => 'Payment History']
+    ['url' => 'dashboard.php', 'text' => 'Dashboard', 'active' => $current_page === 'dashboard.php'],
+    ['url' => 'rent.php', 'text' => 'Book Rental', 'active' => $current_page === 'rent.php'],
+    ['url' => 'history.php', 'text' => 'Booking History', 'active' => $current_page === 'history.php'],
+    ['url' => 'payment_history.php', 'text' => 'Payment History', 'active' => $current_page === 'payment_history.php'],
 ];
 include '../includes/header.php';
 ?>
@@ -60,7 +62,7 @@ include '../includes/header.php';
         <?php else: ?>
             <div class="text-center py-4">
                 <p class="theme-text">No payment history found.</p>
-                <a href="rent.php" class="btn theme-btn">Make Your First Booking</a>
+                <a href="dashboard.php" class="btn theme-btn">Pay a booking to see your first payment history</a>
             </div>
         <?php endif; ?>
     </div>

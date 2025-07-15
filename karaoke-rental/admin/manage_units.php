@@ -16,9 +16,10 @@ $page_title = 'Manage Karaoke Units';
 $base_path = '../';
 $is_admin = true;
 $show_logout = true;
+$user_name = $_SESSION['name'];
 $nav_links = [
-    ['url' => 'dashboard.php', 'text' => 'Dashboard'],
-    ['url' => 'manage_units.php', 'text' => 'Manage Units']
+    ['url' => 'dashboard.php', 'text' => 'Dashboard', 'active' => basename(__FILE__) === 'dashboard.php'],
+    ['url' => 'manage_units.php', 'text' => 'Manage Units', 'active' => basename(__FILE__) === 'manage_units.php']
 ];
 include '../includes/header.php';
 ?>
