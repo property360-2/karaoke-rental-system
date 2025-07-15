@@ -1,0 +1,46 @@
+/* Theme CSS for dark and light mode */
+:root {
+    --dark-bg: rgb(34, 40, 49);
+    --dark-card: rgb(57, 62, 70);
+    --accent: rgb(148, 137, 121);
+    --light-bg: rgb(223, 208, 184);
+    --border: rgb(220, 208, 168);
+}
+
+body.dark-mode {
+    background-color: var(--dark-bg) !important;
+    color: var(--light-bg) !important;
+}
+body.dark-mode .theme-navbar {
+    background-color: var(--dark-card) !important;
+}
+body.dark-mode .theme-title {
+    color: var(--accent);
+}
+body.dark-mode .theme-text {
+    color: var(--light-bg);
+}
+body.dark-mode .theme-btn {
+    background-color: var(--accent);
+    color: var(--dark-bg);
+    border: 1px solid var(--border);
+}
+
+body.light-mode {
+    background-color: var(--light-bg) !important;
+    color: var(--dark-bg) !important;
+}
+body.light-mode .theme-navbar {
+    background-color: var(--border) !important;
+}
+body.light-mode .theme-title {
+    color: var(--dark-bg);
+}
+body.light-mode .theme-text {
+    color: var(--dark-card);
+}
+body.light-mode .theme-btn {
+    background-color: var(--dark-card);
+    color: var(--light-bg);
+    border: 1px solid var(--accent);
+} 

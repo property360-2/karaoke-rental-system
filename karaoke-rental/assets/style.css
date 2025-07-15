@@ -1,0 +1,23 @@
+/* Base custom styles for Karaoke Rental System */
+.theme-bg {
+    background-color: rgb(34, 40, 49) !important;
+    min-height: 100vh;
+}
+.theme-navbar {
+    background-color: rgb(57, 62, 70) !important;
+}
+.theme-title {
+    color: rgb(148, 137, 121);
+}
+.theme-text {
+    color: rgb(223, 208, 184);
+}
+.theme-btn {
+    background-color: rgb(148, 137, 121);
+    color: rgb(34, 40, 49);
+    border: 1px solid rgb(220, 208, 168);
+}
+.theme-btn:hover {
+    background-color: rgb(223, 208, 184);
+    color: rgb(34, 40, 49);
+} 
