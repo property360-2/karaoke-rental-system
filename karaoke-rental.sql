@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS users (
 
 -- Sample admin and user (default passwords use MD5 for testing only)
 INSERT INTO users (name, email, password, phone, address, role) VALUES
-('Admin', 'admin@example.com', MD5('admin123'), '09171234567', 'Admin Address', 'admin'),
-('Juan Dela Cruz', 'juan@example.com', MD5('password'), '09179876543', 'Manila', 'user');
+('Admin', 'admin@demo.com', MD5('1234'), '09171234567', 'Admin Address', 'admin'),
+('Jun Alvior', 'Junalvior21@gmail.com', MD5('1234'), '09179876543', 'Manila', 'user');
 
 -- --------------------------------------------------
 -- Table: settings
