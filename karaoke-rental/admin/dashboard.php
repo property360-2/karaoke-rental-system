@@ -29,7 +29,8 @@ $show_logout = true;
 $user_name = $_SESSION['name'];
 $nav_links = [
     ['url' => 'dashboard.php', 'text' => 'Dashboard', 'active' => basename(__FILE__) === 'dashboard.php'],
-    ['url' => 'manage_units.php', 'text' => 'Manage Units', 'active' => basename(__FILE__) === 'manage_units.php']
+    ['url' => 'manage_units.php', 'text' => 'Manage Units', 'active' => basename(__FILE__) === 'manage_units.php'],
+    ['url' => 'returned_units.php', 'text' => 'Returned Units', 'active' => basename(__FILE__) === 'returned_units.php']
 ];
 include '../includes/header.php';
 ?>

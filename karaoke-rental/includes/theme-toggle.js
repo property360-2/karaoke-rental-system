@@ -15,18 +15,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const themeToggle = document.getElementById('themeToggle');
     const preferred = getPreferredTheme();
     setTheme(preferred);
-    themeToggle.checked = preferred === 'dark';
+    if (themeToggle) {
+        themeToggle.checked = preferred === 'dark';
 
-    themeToggle.addEventListener('change', function () {
-        const mode = this.checked ? 'dark' : 'light';
-        setTheme(mode);
-        localStorage.setItem('theme', mode);
-    });
+        themeToggle.addEventListener('change', function () {
+            const mode = this.checked ? 'dark' : 'light';
+            setTheme(mode);
+            localStorage.setItem('theme', mode);
+        });
 
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        if (!localStorage.getItem('theme')) {
-            setTheme(e.matches ? 'dark' : 'light');
-            themeToggle.checked = e.matches;
-        }
-    });
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('theme')) {
+                setTheme(e.matches ? 'dark' : 'light');
+                themeToggle.checked = e.matches;
+            }
+        });
+    }
 }); 

@@ -80,17 +80,20 @@ include '../includes/header.php';
         </div>
     </div>
 </div>
+<?php include '../includes/footer.php'; ?>
 <script>
 const payNowBtn = document.getElementById('payNowBtn');
 const payConfirmModal = new bootstrap.Modal(document.getElementById('payConfirmModal'));
 const payForm = document.getElementById('payForm');
 const paySpinner = document.getElementById('paySpinner');
+const confirmPayBtn = document.getElementById('confirmPayBtn');
+
 payNowBtn.addEventListener('click', function(e) {
     e.preventDefault();
     payConfirmModal.show();
 });
-payForm.addEventListener('submit', function() {
+confirmPayBtn.addEventListener('click', function() {
     paySpinner.classList.remove('d-none');
+    payForm.submit();
 });
-</script>
-<?php include '../includes/footer.php'; ?> 
+</script> 

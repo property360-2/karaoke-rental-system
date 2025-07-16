@@ -40,25 +40,25 @@ include 'includes/header.php';
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card theme-navbar p-4">
-                <h2 class="mb-4 theme-title text-center">Login</h2>
+            <div class="card theme-navbar p-4" style="background: var(--dark-card, #fff); box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                <h2 class="mb-4 theme-title text-center" style="font-size:2rem; font-weight:700; color:var(--accent,#222); letter-spacing:1px;">Login</h2>
                 <?php if ($errors): ?>
-                    <div class="alert alert-danger">
-                        <?php foreach ($errors as $e) echo $e.'<br>'; ?>
+                    <div class="alert alert-danger" style="font-size:1.1rem; color:#721c24; background:#f8d7da; border:1px solid #f5c6cb; border-radius:4px;">
+                        <?php foreach ($errors as $e) echo '<span style="display:block; margin-bottom:2px;">'.htmlspecialchars($e).'</span>'; ?>
                     </div>
                 <?php endif; ?>
                 <form method="post" novalidate>
                     <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" name="email" class="form-control" required>
+                        <label class="form-label" style="font-size:1.1rem; font-weight:600; color:var(--accent,#222);">Email</label>
+                        <input type="email" name="email" class="form-control" required style="font-size:1.08rem;">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" required>
+                        <label class="form-label" style="font-size:1.1rem; font-weight:600; color:var(--accent,#222);">Password</label>
+                        <input type="password" name="password" class="form-control" required style="font-size:1.08rem;">
                     </div>
-                    <button type="submit" class="btn theme-btn w-100">Login</button>
+                    <button type="submit" class="btn theme-btn w-100" style="font-size:1.15rem; font-weight:600; padding:10px 0;">Login</button>
                     <div class="mt-3 text-center">
-                        <a href="user/register.php" class="theme-text">Don't have an account? Register</a>
+                        <a href="user/register.php" class="theme-text" style="font-size:1.05rem; text-decoration:underline; color:var(--accent,#222);">Don't have an account? Register</a>
                     </div>
                 </form>
             </div>
